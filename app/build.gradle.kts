@@ -28,6 +28,60 @@ android {
             )
         }
     }
+
+    // Define flavor dimensions
+    // Each dimension represents a category of flavors (e.g., product type, environment)
+    flavorDimensions += listOf("flav", "type")
+
+    // Define product flavors
+    productFlavors {
+
+        // DXHub Enrollment flavor
+        // This represents one variant of the app under the "flav" dimension
+        create("laeb") {
+            dimension = "flav"
+            // Additional flavor-specific configuration can be added here if needed
+        }
+
+
+        // UAT environment flavor
+        // Represents the "type" dimension (environment)
+        create("uat") {
+            dimension = "type"
+            // Host URL for the environment
+            buildConfigField(
+                "String",
+                "HOST",
+                "\"http://dxhub-dev-tenant-config-lb-1885688659.us-east-1.elb.amazonaws.com:8082/services/dxh-tenantconfig/config/maximus/\""
+            )
+            buildConfigField("boolean", "SHOW_TEST_DATA", "false")  // Disable test data
+            buildConfigField("String", "SHARED_PREFERENCES_NAME", "\"shared_maximus_uat\"")
+            buildConfigField("String", "DATABASE_NAME", "\"db_maximus_uat\"")
+        }
+
+
+        // Dev environment flavor
+        create("dev") {
+            dimension = "type"
+        }
+
+
+        // Staging environment
+        create("staging") {
+            dimension = "type"
+        }
+
+        // Production environment
+        create("prod") {
+            dimension = "type"
+        }
+
+        // Dev environment flavor
+        create("eTest") {
+            dimension = "type"
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
