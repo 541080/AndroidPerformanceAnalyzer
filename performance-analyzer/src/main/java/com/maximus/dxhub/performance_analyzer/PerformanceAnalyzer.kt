@@ -1,6 +1,7 @@
 package com.maximus.dxhub.performance_analyzer
 
 import android.app.Application
+import android.util.Log
 
 object PerformanceAnalyzer {
 
@@ -8,5 +9,6 @@ object PerformanceAnalyzer {
 
         // start monitoring
         println("Performance Analyzer Initialized")
+        Log.d("PerformanceAnalyzer","Performance Analyzer Initialized")
     }
 }
